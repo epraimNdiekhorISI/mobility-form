@@ -2,7 +2,7 @@
    URL de l'API qui enregistre les réponses (dossier api/).
    Vide = mode démonstration (aucune donnée envoyée).
    ================================================================ */
-const API_URL_PROD = "https://A_REMPLIR.vercel.app"; // URL de l'API déployée sur Vercel
+const API_URL_PROD = "https://mobility-form-api.vercel.app"; // URL de l'API déployée sur Vercel
 const API_URL = ["localhost", "127.0.0.1"].includes(location.hostname) ? "http://localhost:4000" : API_URL_PROD;
 
 const IMG = {
