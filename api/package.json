@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "prisma generate && tsc",
-    "vercel-build": "prisma generate && prisma migrate deploy",
+    "build": "prisma generate && prisma migrate deploy",
+    "typecheck": "tsc --noEmit",
+    "compile": "prisma generate && tsc",
     "start": "node dist/server.js",
     "postinstall": "prisma generate",
     "test:post": "tsx scripts/test-post.ts"

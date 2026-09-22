@@ -70,17 +70,18 @@ Routes admin : en-tête `Authorization: Bearer <ADMIN_PASSWORD>`. C'est un mot d
 
 ## Mise en production
 
-**API + PostgreSQL** (Render, Railway ou Fly.io) :
+Trois projets Vercel, tous sur ce dépôt, chacun avec son *Root Directory* :
 
-1. Dans `api/prisma/schema.prisma` : `provider = "postgresql"` et `payload Json` au lieu de `String`.
-   Dans `api/src/lib/validation.ts` (`toColumns`), remplacer `payload: JSON.stringify(r)` par `payload: r`.
-   Dans `api/src/routes/responses.ts`, supprimer les `JSON.parse(...payload)`.
-2. Supprimer `api/prisma/migrations` (générées pour SQLite) puis régénérer avec `npx prisma migrate dev --name init` sur une base Postgres.
-3. Au déploiement : `npm ci && npx prisma migrate deploy && npm run build`, puis `npm start`.
-4. Variables : `DATABASE_URL`, `ADMIN_PASSWORD`, `ALLOWED_ORIGIN` (URL du formulaire et du dashboard, séparées par des virgules), `PORT`.
+| Projet | Root Directory | Variables |
+| --- | --- | --- |
+| API | `api` | `DATABASE_URL` + `DATABASE_URL_UNPOOLED` (ajoutées par Neon), `ADMIN_PASSWORD`, `ALLOWED_ORIGIN` |
+| Dashboard | `admin` | `VITE_API_URL` = URL de l'API |
+| Formulaire | `form` | aucune |
 
-**Dashboard** (Netlify ou Vercel) : build `npm run build`, dossier `dist`, variable `VITE_API_URL` = URL de l'API.
+- **Base de données** : projet API → *Storage* → *Create Database* → **Neon**. Vercel injecte les deux `DATABASE_URL`.
+- **Build de l'API** : `npm run build` exécute `prisma generate && prisma migrate deploy`. Vercel compile lui-même le TypeScript ; `npm run typecheck` sert à vérifier les types en local, `npm run compile` à produire `dist/` pour un hébergeur classique.
+- **`ALLOWED_ORIGIN`** doit contenir les adresses du formulaire et du dashboard, séparées par des virgules. Sans ça, le navigateur bloque leurs appels.
+- **`API_URL_PROD`** dans `form/js/app.js` doit contenir l'adresse de l'API. En local, le formulaire bascule tout seul sur `http://localhost:4000`.
+- HTTPS est fourni par Vercel.
 
-**Formulaire** (Netlify Drop, tout le dossier `form/`) : `API_URL` dans `form/js/app.js` = URL de l'API, et ajouter l'origine du formulaire dans `ALLOWED_ORIGIN`.
-
-L'hébergeur fournit HTTPS, obligatoire en production.
+Le rate-limit est gardé en mémoire de chaque instance. Sur Vercel, plusieurs instances peuvent tourner en parallèle : les limites sont donc approximatives, ce qui suffit pour de l'anti-spam.
