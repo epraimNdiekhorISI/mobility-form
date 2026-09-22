@@ -3,3 +3,8 @@
 Thumbs.db
 
 .vercel
+
+# variables d environnement (jamais commitees)
+.env
+.env.*
+!.env.example
