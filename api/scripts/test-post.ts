@@ -4,7 +4,7 @@
  * Vérifie : POST usager + conducteur, whitelist des champs, validation,
  * protection admin, liste, stats, export CSV, suppression.
  */
-import "dotenv/config";
+import "../src/lib/env";
 
 const API = process.env.API_URL ?? `http://localhost:${process.env.PORT || 4000}`;
 const auth = { Authorization: `Bearer ${process.env.ADMIN_PASSWORD}` };

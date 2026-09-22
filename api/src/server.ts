@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./lib/env";
 import express, { type ErrorRequestHandler } from "express";
 import helmet from "helmet";
 import cors from "cors";
