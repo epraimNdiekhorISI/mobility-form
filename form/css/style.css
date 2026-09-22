@@ -57,7 +57,7 @@
 
   /* Scène / écrans */
   .stage{ flex:1; position:relative; margin-top:14px; }
-  .screen{ position:absolute; inset:0; display:flex; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+  .screen{ position:absolute; inset:0; display:flex; overflow-y:auto; overflow-x:hidden; -webkit-overflow-scrolling:touch; }
   .screen__in{ margin:auto 0; width:100%; padding: 6px 2px; }
   .kicker{ font-size:13px; color:var(--blue); font-weight:600; margin:0 0 12px; }
   h1.q{
@@ -95,6 +95,10 @@
   .field::placeholder{ color: oklch(0.62 0.02 264); }
   .field:focus{ outline:none; border-color: var(--blue); }
   textarea.field{ min-height:132px; line-height:1.55; }
+
+  /* Cases a cocher (plusieurs reponses) : marque carree pour les distinguer des choix uniques. */
+  .opt.check .mark{ border-radius:7px; }
+  .opt.check .mark::after{ border-radius:2px; }
   .otherwrap{ margin-top:10px; display:none; } .otherwrap.show{ display:block; }
 
   /* Badge de confiance (façon carte-stat noire) */
@@ -108,7 +112,7 @@
   .law{ font-size:12.5px; color:var(--muted); margin:12px 0 0; }
 
   /* Pied */
-  .foot{ display:flex; align-items:center; gap:12px; margin-top:22px; }
+  .foot{ display:flex; align-items:center; flex-wrap:wrap; gap:10px 12px; margin-top:22px; }
   .btn{
     appearance:none; font:inherit; font-weight:700; cursor:pointer;
     border-radius:99px; padding:14px 24px; border:none;
@@ -124,7 +128,7 @@
   .btn .ic svg{ width:13px; height:13px; }
   .btn--ghost{ background:var(--panel); color:var(--text); border:1.5px solid var(--line); box-shadow:var(--sh-card); }
   .btn--ghost:focus-visible{ outline:3px solid var(--tint); }
-  .spacer{ flex:1; }
+  .spacer{ flex:1 1 0; min-width:0; }
   .skip{ background:none; border:none; color:var(--muted); font:inherit; font-weight:600; text-decoration:underline; cursor:pointer; padding:8px; }
 
   /* Accueil / fin */
@@ -163,5 +167,13 @@
   .choice .tx span{ font-size:13px; color:var(--muted); }
   .choice .go{ margin-left:auto; color:var(--blue); display:flex; }
   .choice .go svg{ width:22px; height:22px; }
+  /* Téléphones étroits : les boutons du pied tiennent sur la largeur, sans défilement latéral. */
+  @media (max-width: 430px){
+    .foot{ gap:8px; }
+    .btn{ padding:13px 18px; }
+    .btn--primary{ flex:1 1 auto; justify-content:center; }
+    .skip{ padding:8px 2px; }
+    .brand span{ display:none; }
+  }
 
   @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }

@@ -20,7 +20,7 @@ model Response {
   interet     String?
   telephone   String? // type de téléphone (pas un numéro)
   mobileMoney String?
-  recontact   String? // NUMÉRO facultatif — donnée personnelle
+  recontact   String? // ADRESSE E-MAIL facultative — donnée personnelle
   payload     Json // réponse complète nettoyée (source de vérité)
 
   @@index([role])

@@ -51,7 +51,7 @@ Pour des tests manuels, [api/test.http](api/test.http) fonctionne avec l'extensi
 |---|---|---|---|
 | `POST` | `/api/responses` | public (CORS + 20 req/min/IP) | enregistre une réponse |
 | `GET` | `/api/responses` | admin | liste paginée : `?role=&vehicleType=&limit=&cursor=` |
-| `GET` | `/api/responses/:id` | admin | détail d'une réponse (verbatim + numéro de recontact) |
+| `GET` | `/api/responses/:id` | admin | détail d'une réponse (verbatim + e-mail de recontact) |
 | `DELETE` | `/api/responses/:id` | admin | suppression (droit à l'effacement) |
 | `GET` | `/api/stats` | admin | agrégats |
 | `GET` | `/api/export.csv` | admin | export CSV (`?role=` optionnel) |
@@ -62,9 +62,9 @@ Routes admin : en-tête `Authorization: Bearer <ADMIN_PASSWORD>`. C'est un mot d
 ## Données et confidentialité
 
 - **Whitelist** : seuls les champs prévus pour chaque profil sont conservés. Les autres clés sont ignorées (zod, sans `passthrough`). Chaque champ fait au plus 2000 caractères.
-- **`recontact`** (numéro volontaire) est la seule donnée personnelle. Il n'apparaît ni dans la liste ni dans l'export CSV : on ne le voit que dans le panneau de détail.
+- **`recontact`** (adresse e-mail volontaire) est la seule donnée personnelle. Il n'apparaît ni dans la liste ni dans l'export CSV : on ne le voit que dans le panneau de détail.
 - **Effacement** : sur demande d'un répondant, ouvrir sa réponse dans le dashboard et cliquer sur « Supprimer cette réponse ».
-- **Journaux** : ni les payloads ni les numéros ne sont loggués.
+- **Journaux** : ni les payloads ni les adresses e-mail ne sont loggués.
 - **Secrets** : `.env` est git-ignoré et `ADMIN_PASSWORD` ne doit jamais être commité. En production, choisir un mot de passe d'au moins 12 caractères.
 - **Export CSV** : séparateur `;` et BOM UTF-8 pour Excel en français. Les cellules qui commencent par `=`, `+`, `-` ou `@` sont neutralisées contre l'injection de formules.
 

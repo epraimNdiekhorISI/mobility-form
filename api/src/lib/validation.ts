@@ -23,7 +23,7 @@ const usagerSchema = z.object({
   mobile_money: text,
   interet: text,
   supplement: text,
-  recontact: text,
+  recontact: text, // adresse e-mail facultative
   horodatage: text, // horodatage client, conservé à titre indicatif
 });
 
@@ -42,7 +42,7 @@ const conducteurSchema = z.object({
   interet: text,
   commission: text,
   financement: text,
-  recontact: text,
+  recontact: text, // adresse e-mail facultative
   horodatage: text,
 });
 

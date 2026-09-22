@@ -79,7 +79,7 @@ export function DetailPanel(props: {
               ))}
           </dl>
 
-          <h3>Numéro de recontact</h3>
+          <h3>Adresse e-mail de recontact</h3>
           <p className="pii">
             {item.recontact ?? <span className="muted">Non communiqué.</span>}
           </p>

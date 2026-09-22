@@ -1,6 +1,6 @@
 import type { Filters, ResponseRow } from "../api";
 
-// Le numéro de recontact n'apparaît jamais ici : seulement dans le panneau de détail.
+// L'adresse e-mail de recontact n'apparaît jamais ici : seulement dans le panneau de détail.
 export function ResponsesTable(props: {
   rows: ResponseRow[];
   filters: Filters;

@@ -16,32 +16,32 @@ const CHECK = '<svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" str
 const QSETS = {
 usager: [
   { id:"consent", type:"consent", required:true, q:"Un instant avant de commencer", hint:"Cette enquête est anonyme et libre. Ton avis va aider à concevoir un transport plus fiable à N'Djamena." },
-  { id:"quartier", type:"text", required:false, q:"Tu habites quel quartier ?", hint:"Le quartier ou l'arrondissement suffit, pas ton adresse.", placeholder:"Ex. Chagoua, Diguel, Moursal…" },
-  { id:"moyen", type:"single", required:true, q:"Ton moyen de transport principal ?", options:["Clando (moto-taxi)","Taxi voiture","Minibus","Marche","Véhicule personnel"], other:true },
+  { id:"quartier", type:"text", required:true, q:"Tu habites quel quartier ?", hint:"Le quartier ou l'arrondissement suffit, pas ton adresse.", placeholder:"Ex. Chagoua, Diguel, Moursal…" },
+  { id:"moyen", type:"multi", required:true, q:"Tes moyens de transport habituels ?", hint:"Coche tout ce que tu utilises — plusieurs réponses possibles.", options:["Clando (moto-taxi)","Taxi voiture","Minibus","Marche","Véhicule personnel"], other:true },
   { id:"probleme", type:"single", required:true, q:"Ton plus gros problème de transport ?", options:["Prix trop cher","Prix qui change à chaque fois","Attente trop longue","Surcharge / inconfort","Insécurité","Mon quartier est mal desservi","Conducteurs imprudents"], other:true },
   { id:"difficulte", type:"paragraph", required:false, q:"Raconte-le avec tes mots", hint:"Une situation vécue, ce qui te dérange le plus, ou ce que tu voudrais voir changer.", placeholder:"Écris ici…" },
-  { id:"attente", type:"single", required:false, q:"Tu attends combien de temps, en moyenne, pour trouver un transport ?", options:["Moins de 5 min","5 à 15 min","15 à 30 min","Plus de 30 min"] },
+  { id:"attente", type:"single", required:true, q:"Tu attends combien de temps, en moyenne, pour trouver un transport ?", options:["Moins de 5 min","5 à 15 min","15 à 30 min","Plus de 30 min"] },
   { id:"telephone", type:"single", required:true, q:"Ton téléphone, c'est…", options:["Un smartphone","Un téléphone simple (à touches)"] },
-  { id:"mobile_money", type:"single", required:true, q:"Quel mobile money utilises-tu ?", options:["Airtel Money","Moov Money","Les deux","Aucun"] },
+  { id:"mobile_money", type:"multi", required:true, q:"Quel mobile money utilises-tu ?", hint:"Coche tout ce que tu utilises.", options:["Airtel Money","Moov Money","Aucun"] },
   { id:"interet", type:"single", required:true, q:"Utiliserais-tu une appli pour commander un moto-taxi identifié, prix connu à l'avance ?", options:["Oui, certainement","Peut-être","Non"] },
-  { id:"supplement", type:"single", required:false, q:"Paierais-tu un petit supplément pour un service fiable et sécurisé ?", options:["Oui","Non","Ça dépend"] },
-  { id:"recontact", type:"phone", required:false, q:"On te recontacte pour tester le service ?", hint:"Seulement si tu le souhaites. Ton numéro ne sert qu'à ça.", placeholder:"Ton numéro (facultatif)" },
+  { id:"supplement", type:"single", required:true, q:"Paierais-tu un petit supplément pour un service fiable et sécurisé ?", options:["Oui","Non","Ça dépend"] },
+  { id:"recontact", type:"email", required:false, q:"On te recontacte pour tester le service ?", hint:"Seulement si tu le souhaites. Ton adresse ne sert qu'à ça.", placeholder:"ton.email@exemple.com (facultatif)" },
 ],
 chauffeur: [
   { id:"consent", type:"consent", required:true, q:"Un instant avant de commencer", hint:"Cette enquête est anonyme et libre. Ton avis aide à construire un service pensé pour les chauffeurs de N'Djamena." },
-  { id:"propriete", type:"single", required:false, q:"Le véhicule, il est à toi ?", options:["À moi","En location","Work-and-pay (je paie petit à petit)"] },
-  { id:"anciennete", type:"single", required:false, q:"Depuis combien de temps tu fais ce métier ?", options:["Moins d'un an","1 à 3 ans","3 à 5 ans","Plus de 5 ans"] },
-  { id:"zone", type:"text", required:false, q:"Ta zone habituelle de travail ?", hint:"Le quartier ou l'axe où tu roules le plus.", placeholder:"Ex. Dembé, Chagoua, Av. Charles de Gaulle…" },
-  { id:"courses_jour", type:"single", required:false, q:"Combien de courses par jour, en moyenne ?", options:["Moins de 10","10 à 20","20 à 40","Plus de 40"] },
-  { id:"trouver_clients", type:"single", required:false, q:"Comment tu trouves tes clients ?", options:["Dans la rue","À la station","Des clients réguliers","Par téléphone"] },
+  { id:"propriete", type:"single", required:true, q:"Le véhicule, il est à toi ?", options:["À moi","En location","Work-and-pay (je paie petit à petit)"] },
+  { id:"anciennete", type:"single", required:true, q:"Depuis combien de temps tu fais ce métier ?", options:["Moins d'un an","1 à 3 ans","3 à 5 ans","Plus de 5 ans"] },
+  { id:"zone", type:"text", required:true, q:"Ta zone habituelle de travail ?", hint:"Le quartier ou l'axe où tu roules le plus.", placeholder:"Ex. Dembé, Chagoua, Av. Charles de Gaulle…" },
+  { id:"courses_jour", type:"single", required:true, q:"Combien de courses par jour, en moyenne ?", options:["Moins de 10","10 à 20","20 à 40","Plus de 40"] },
+  { id:"trouver_clients", type:"multi", required:true, q:"Comment tu trouves tes clients ?", hint:"Coche toutes les façons qui te concernent.", options:["Dans la rue","À la station","Des clients réguliers","Par téléphone"] },
   { id:"probleme", type:"single", required:true, q:"Ton plus gros problème dans le métier ?", options:["Trouver des clients","Les prix tirés vers le bas","Le carburant","Les tracasseries (police, syndicat)","L'insécurité","L'entretien du véhicule"], other:true },
   { id:"difficulte", type:"paragraph", required:false, q:"Raconte ce qui est le plus dur, avec tes mots", hint:"Ce qui te fatigue le plus au quotidien, ou ce que tu voudrais voir changer.", placeholder:"Écris ici…" },
   { id:"telephone", type:"single", required:true, q:"Ton téléphone, c'est…", options:["Un smartphone","Un téléphone simple (à touches)"] },
-  { id:"mobile_money", type:"single", required:true, q:"Quel mobile money utilises-tu ?", options:["Airtel Money","Moov Money","Les deux","Aucun"] },
+  { id:"mobile_money", type:"multi", required:true, q:"Quel mobile money utilises-tu ?", hint:"Coche tout ce que tu utilises.", options:["Airtel Money","Moov Money","Aucun"] },
   { id:"interet", type:"single", required:true, q:"Une plateforme qui t'envoie des clients directement, ça t'intéresse ?", options:["Oui","Peut-être","Non"] },
-  { id:"commission", type:"single", required:false, q:"Quelle commission par course serait acceptable pour toi ?", options:["Gratuit au début","5 %","10 %","Ça dépend"] },
-  { id:"financement", type:"single", required:false, q:"Un financement pour avoir ton propre véhicule (payer petit à petit), ça t'intéresse ?", options:["Oui","Non","Peut-être"] },
-  { id:"recontact", type:"phone", required:false, q:"On te recontacte pour être conducteur pilote ?", hint:"Seulement si tu veux. Ton numéro ne sert qu'à ça.", placeholder:"Ton numéro (facultatif)" },
+  { id:"commission", type:"single", required:true, q:"Quelle commission par course serait acceptable pour toi ?", options:["Gratuit au début","5 %","10 %","Ça dépend"] },
+  { id:"financement", type:"single", required:true, q:"Un financement pour avoir ton propre véhicule (payer petit à petit), ça t'intéresse ?", options:["Oui","Non","Peut-être"] },
+  { id:"recontact", type:"email", required:false, q:"On te recontacte pour être conducteur pilote ?", hint:"Seulement si tu veux. Ton adresse ne sert qu'à ça.", placeholder:"ton.email@exemple.com (facultatif)" },
 ]
 };
 let QUESTIONS = [];
@@ -66,9 +66,13 @@ function leave(el, done){
   if(reduce){ el.remove(); done(); return; }
   gsap.to(el, {opacity:0, y:-14, duration:.26, ease:"power2.in", onComplete:()=>{ el.remove(); done(); }});
 }
+/* Verrou : pendant une transition, aucun autre passage n'est accepté.
+   Sans lui, un clic sur une option (qui avance seule) suivi du bouton Suivant sauterait une question. */
+let swapping = false;
 function swap(build){
   const old = stage.firstElementChild;
-  const go = ()=>{ const el = build(); stage.appendChild(el); enter(el); };
+  swapping = true;
+  const go = ()=>{ const el = build(); stage.appendChild(el); enter(el); swapping = false; };
   old ? leave(old, go) : go();
 }
 function updateProgress(){
@@ -130,13 +134,18 @@ function screenQuestion(qi){
     body = `<div class="options" role="radiogroup" aria-label="${Q.q}">` +
       Q.options.map(o=>`<button class="opt" role="radio" aria-checked="false" data-val="${o}" data-in><span class="mark"></span>${o}</button>`).join("") +
       (Q.other?`<button class="opt" role="radio" aria-checked="false" data-val="__other" data-in><span class="mark"></span>Autre</button><div class="otherwrap" id="otherwrap"><input class="field" id="otherinput" placeholder="Précise…"></div>`:"") + `</div>`;
+  } else if(Q.type==="multi"){
+    /* Plusieurs réponses possibles : cases à cocher, puis bouton Suivant. */
+    body = `<div class="options" role="group" aria-label="${Q.q}">` +
+      Q.options.map(o=>`<button class="opt check" role="checkbox" aria-checked="false" data-val="${o}" data-in><span class="mark"></span>${o}</button>`).join("") +
+      (Q.other?`<button class="opt check" role="checkbox" aria-checked="false" data-val="__other" data-in><span class="mark"></span>Autre</button><div class="otherwrap" id="otherwrap"><input class="field" id="otherinput" placeholder="Précise…"></div>`:"") + `</div>`;
   } else if(Q.type==="paragraph"){
     body = `<textarea class="field" id="para" placeholder="${Q.placeholder||""}" data-in></textarea>`;
   } else {
-    const t = Q.type==="phone" ? "tel":"text";
+    const t = Q.type==="email" ? "email":"text";
     body = `<input class="field" id="txt" type="${t}" placeholder="${Q.placeholder||""}" data-in>`;
   }
-  const isText = (Q.type==="text"||Q.type==="phone"||Q.type==="paragraph");
+  const isText = (Q.type==="text"||Q.type==="email"||Q.type==="paragraph");
   el.innerHTML = wrap(`
     ${Q.kicker?`<p class="kicker" data-in>${Q.kicker}</p>`:""}
     <h1 class="q" data-in>${Q.q}</h1>
@@ -145,7 +154,7 @@ function screenQuestion(qi){
     <div class="foot" data-in>
       ${qi>0?`<button class="btn btn--ghost" id="back">Précédent</button>`:""}
       <div class="spacer"></div>
-      ${isText ? `${!Q.required?`<button class="skip" id="skip">Passer</button>`:""}<button class="btn btn--primary" id="nextbtn">Suivant ${ARROW}</button>`
+      ${(isText || Q.type==="multi" || (Q.type==="single" && Q.other)) ? `${!Q.required?`<button class="skip" id="skip">Passer</button>`:""}<button class="btn btn--primary" id="nextbtn">Suivant ${ARROW}</button>`
                : `${!Q.required?`<button class="skip" id="skip">Passer</button>`:""}`}
     </div>`);
 
@@ -156,27 +165,77 @@ function screenQuestion(qi){
     const opts = [...el.querySelectorAll(".opt")];
     const otherwrap = el.querySelector("#otherwrap");
     const otherinput = el.querySelector("#otherinput");
+    // Bouton présent seulement quand « Autre » existe : il n'y a alors pas de passage automatique.
+    const nextbtn = el.querySelector("#nextbtn");
+    if(nextbtn) nextbtn.disabled = true;
+
     opts.forEach(btn=>{
       btn.addEventListener("click", ()=>{
         opts.forEach(b=>b.setAttribute("aria-checked","false"));
         btn.setAttribute("aria-checked","true");
         const val = btn.dataset.val;
+        if(nextbtn) nextbtn.disabled = false;
         if(val==="__other"){ if(otherwrap){ otherwrap.classList.add("show"); otherinput.focus(); } answers[Q.id]= otherinput?(otherinput.value.trim()||"Autre"):"Autre"; return; }
         if(otherwrap) otherwrap.classList.remove("show");
         answers[Q.id]=val;
         if(Q.id==="consent" && val==="Non"){ setTimeout(declined,260); return; }
-        setTimeout(next, 300);
+        // On n'avance que si cet écran est toujours celui affiché (évite un double passage).
+        setTimeout(()=>{ if(stage.contains(el)) next(); }, 300);
       });
     });
     if(otherinput){
       otherinput.addEventListener("input", ()=>{ answers[Q.id]=otherinput.value.trim()||"Autre"; });
       otherinput.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); next(); } });
     }
+    if(nextbtn) nextbtn.addEventListener("click", ()=>{ if(!nextbtn.disabled && stage.contains(el)) next(); });
+  }
+  if(Q.type==="multi"){
+    const opts = [...el.querySelectorAll(".opt")];
+    const otherwrap = el.querySelector("#otherwrap");
+    const otherinput = el.querySelector("#otherinput");
+    const nextbtn = el.querySelector("#nextbtn");
+
+    /* Valeurs cochées, séparées par « ; ». « Aucun » exclut les autres réponses. */
+    const collect = ()=> opts.filter(b=>b.getAttribute("aria-checked")==="true")
+      .map(b=> b.dataset.val==="__other" ? (otherinput&&otherinput.value.trim() ? otherinput.value.trim() : "Autre") : b.dataset.val);
+    const sync = ()=>{
+      const vals = collect();
+      answers[Q.id] = vals.join(" ; ");
+      if(Q.required) nextbtn.disabled = vals.length===0;
+    };
+
+    opts.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const checked = btn.getAttribute("aria-checked")==="true";
+        btn.setAttribute("aria-checked", checked ? "false":"true");
+        const isNone = /^aucun/i.test(btn.dataset.val);
+        if(!checked && isNone) opts.forEach(b=>{ if(b!==btn) b.setAttribute("aria-checked","false"); });
+        if(!checked && !isNone) opts.forEach(b=>{ if(/^aucun/i.test(b.dataset.val)) b.setAttribute("aria-checked","false"); });
+        if(otherwrap) otherwrap.classList.toggle("show", opts.some(b=>b.dataset.val==="__other" && b.getAttribute("aria-checked")==="true"));
+        sync();
+      });
+    });
+    if(otherinput) otherinput.addEventListener("input", sync);
+    nextbtn.addEventListener("click", ()=>{ sync(); if(!nextbtn.disabled) next(); });
+    sync();
   }
   if(isText){
     const input = el.querySelector("#txt")||el.querySelector("#para");
-    el.querySelector("#nextbtn").addEventListener("click", ()=>{ answers[Q.id]=input.value.trim(); next(); });
-    input.addEventListener("keydown", e=>{ if(e.key==="Enter" && Q.type!=="paragraph"){ e.preventDefault(); answers[Q.id]=input.value.trim(); next(); } });
+    const nextbtn = el.querySelector("#nextbtn");
+
+    /* Tant que la réponse attendue n'est pas saisie (ou l'e-mail mal écrit), on ne passe pas. */
+    const valid = ()=>{
+      const v = input.value.trim();
+      if(Q.type==="email") return v==="" ? !Q.required : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      return Q.required ? v!=="" : true;
+    };
+    const sync = ()=>{ nextbtn.disabled = !valid(); };
+    const go = ()=>{ if(!valid()) return; answers[Q.id]=input.value.trim(); next(); };
+
+    input.addEventListener("input", sync);
+    nextbtn.addEventListener("click", go);
+    input.addEventListener("keydown", e=>{ if(e.key==="Enter" && Q.type!=="paragraph"){ e.preventDefault(); go(); } });
+    sync();
   }
   return el;
 }
@@ -213,10 +272,12 @@ async function submit(){
 }
 
 function next(){
+  if(swapping) return;
   if(idx >= QUESTIONS.length-1){ idx=QUESTIONS.length; topbar.hidden=true; swap(screenDone); pfill.style.width="100%"; counter.textContent=""; submit(); return; }
   idx++; swap(()=>screenQuestion(idx)); updateProgress();
 }
 function prev(){
+  if(swapping) return;
   if(idx<=0){ idx=-1; topbar.hidden=true; swap(screenIntro); updateProgress(); return; }
   idx--; swap(()=>screenQuestion(idx)); updateProgress();
 }

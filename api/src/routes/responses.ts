@@ -94,8 +94,16 @@ export const statsHandler: RequestHandler = async (_req, res) => {
   const conducteurs = count("conducteur");
 
   // Transforme un groupBy en liste { label, count } triée par effectif décroissant.
-  const tally = (rows: { label: string | null; n: number }[]): Tally =>
-    rows.map((r) => ({ label: r.label ?? "Non renseigné", count: r.n })).sort((a, b) => b.count - a.count);
+  // Les questions à choix multiples stockent « A ; B » : chaque réponse est comptée à part.
+  const tally = (rows: { label: string | null; n: number }[]): Tally => {
+    const totals = new Map<string, number>();
+    for (const r of rows) {
+      for (const label of (r.label ?? "Non renseigné").split(" ; ")) {
+        totals.set(label, (totals.get(label) ?? 0) + r.n);
+      }
+    }
+    return [...totals].map(([label, count]) => ({ label, count })).sort((a, b) => b.count - a.count);
+  };
 
   // Même chose, séparé usager / conducteur.
   const perRole = (rows: { role: string; label: string | null; n: number }[]) => ({
@@ -119,7 +127,7 @@ export const statsHandler: RequestHandler = async (_req, res) => {
 };
 
 /* ---------- GET /api/export.csv — admin ---------- */
-// Le numéro de recontact n'est volontairement PAS exporté : on limite la dissémination
+// L'adresse e-mail de recontact n'est volontairement PAS exportée : on limite la dissémination
 // de la seule donnée personnelle (il reste consultable dans le panneau de détail).
 const CSV_FIELDS = ALL_FIELDS.filter((f) => f !== "recontact");
 
