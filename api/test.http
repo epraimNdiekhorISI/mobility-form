@@ -1,0 +1,67 @@
+### Test manuel (extension VS Code « REST Client »)
+@api = http://localhost:4000
+# Remplacer par la valeur d'ADMIN_PASSWORD dans api/.env
+@password = change-moi
+
+### Santé
+GET {{api}}/api/health
+
+### Réponse usager
+POST {{api}}/api/responses
+Content-Type: application/json
+
+{
+  "role": "usager",
+  "quartier": "Moursal",
+  "moyen": "Clando",
+  "probleme": "Prix",
+  "difficulte": "Le matin il faut attendre longtemps au rond-point.",
+  "attente": "15-30 min",
+  "telephone": "Smartphone",
+  "mobile_money": "Oui",
+  "interet": "Oui",
+  "supplement": "Oui",
+  "recontact": "",
+  "horodatage": "2026-09-22T08:00:00.000Z"
+}
+
+### Réponse conducteur
+POST {{api}}/api/responses
+Content-Type: application/json
+
+{
+  "role": "conducteur",
+  "type_vehicule": "Moto-taxi",
+  "propriete": "Location",
+  "anciennete": "1-3 ans",
+  "zone": "Chagoua",
+  "courses_jour": "10-20",
+  "trouver_clients": "Au bord de la route",
+  "probleme": "Police",
+  "difficulte": "Trop de contrôles.",
+  "telephone": "Téléphone simple",
+  "mobile_money": "Oui",
+  "interet": "Peut-être",
+  "commission": "10%",
+  "financement": "Non",
+  "recontact": "",
+  "horodatage": "2026-09-22T08:05:00.000Z"
+}
+
+### Rôle invalide -> 400
+POST {{api}}/api/responses
+Content-Type: application/json
+
+{ "role": "pirate" }
+
+### Liste (admin)
+GET {{api}}/api/responses?role=conducteur&limit=10
+Authorization: Bearer {{password}}
+
+### Statistiques (admin)
+GET {{api}}/api/stats
+Authorization: Bearer {{password}}
+
+### Export CSV (admin)
+GET {{api}}/api/export.csv
+Authorization: Bearer {{password}}

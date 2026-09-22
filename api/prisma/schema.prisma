@@ -1,0 +1,28 @@
+// Schéma Prisma — enquête mobilité N'Djamena (PostgreSQL : Neon via Vercel, en local comme en ligne)
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // connexion « poolée » (utilisée par l'API)
+  directUrl = env("DATABASE_URL_UNPOOLED") // connexion directe (utilisée par les migrations)
+}
+
+model Response {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  role        String // "usager" | "conducteur"
+  vehicleType String? // conducteur uniquement
+  zone        String? // quartier (usager) ou zone (conducteur)
+  probleme    String?
+  difficulte  String? // texte libre (verbatim)
+  interet     String?
+  telephone   String? // type de téléphone (pas un numéro)
+  mobileMoney String?
+  recontact   String? // NUMÉRO facultatif — donnée personnelle
+  payload     Json // réponse complète nettoyée (source de vérité)
+
+  @@index([role])
+  @@index([createdAt])
+}
