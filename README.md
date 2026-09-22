@@ -68,18 +68,19 @@ Routes admin : en-tête `Authorization: Bearer <ADMIN_PASSWORD>`. C'est un mot d
 - **Secrets** : `.env` est git-ignoré et `ADMIN_PASSWORD` ne doit jamais être commité. En production, choisir un mot de passe d'au moins 12 caractères.
 - **Export CSV** : séparateur `;` et BOM UTF-8 pour Excel en français. Les cellules qui commencent par `=`, `+`, `-` ou `@` sont neutralisées contre l'injection de formules.
 
-## Mise en production
+## En production (Vercel)
 
-Trois projets Vercel, tous sur ce dépôt, chacun avec son *Root Directory* :
+Trois projets Vercel sur ce dépôt, chacun avec son *Root Directory*. Chaque `git push` sur `main` redéploie les trois.
 
-| Projet | Root Directory | Variables |
-| --- | --- | --- |
-| API | `api` | `DATABASE_URL` + `DATABASE_URL_UNPOOLED` (ajoutées par Neon), `ADMIN_PASSWORD`, `ALLOWED_ORIGIN` |
-| Dashboard | `admin` | `VITE_API_URL` = URL de l'API |
-| Formulaire | `form` | aucune |
+| Projet Vercel | Root Directory | Adresse | Variables |
+| --- | --- | --- | --- |
+| `mobility-form-api` | `api` | <https://mobility-form-api.vercel.app> | base Neon (`mobility_*`), `ADMIN_PASSWORD`, `ALLOWED_ORIGIN` |
+| `mobility-form` | `admin` | <https://mobility-form.vercel.app> | `VITE_API_URL` |
+| `mobility-formulaire` | `form` | <https://mobility-formulaire.vercel.app> | aucune |
 
-- **Base de données** : projet API → *Storage* → *Create Database* → **Neon**. Vercel injecte les deux `DATABASE_URL`.
-- **Build de l'API** : `npm run build` exécute `prisma generate && prisma migrate deploy`. Vercel compile lui-même le TypeScript ; `npm run typecheck` sert à vérifier les types en local, `npm run compile` à produire `dist/` pour un hébergeur classique.
+- **Base de données** : Neon, reliée au projet API (*Storage* → *Create Database*). L'intégration crée ses variables sous un préfixe (`mobility_DATABASE_URL`…) et Vercel les marque secrètes, donc illisibles. `api/scripts/resolve-db-url.cjs` accepte ces noms préfixés : rien n'est à recopier à la main, ni côté API, ni côté migration.
+- **Build de l'API** : `npm run build` exécute `prisma generate && node scripts/migrate.mjs`, qui applique les migrations. Vercel compile lui-même le TypeScript ; `npm run typecheck` vérifie les types en local, `npm run compile` produit `dist/` pour un hébergeur classique.
+- **Formulaire** : site statique. `form/vercel.json` sert le dossier tel quel et renvoie la racine vers `enquete-ndjamena.html` ; `form/package.json` n'existe que parce que Vercel réclame une commande de build.
 - **`ALLOWED_ORIGIN`** doit contenir les adresses du formulaire et du dashboard, séparées par des virgules. Sans ça, le navigateur bloque leurs appels.
 - **`API_URL_PROD`** dans `form/js/app.js` doit contenir l'adresse de l'API. En local, le formulaire bascule tout seul sur `http://localhost:4000`.
 - HTTPS est fourni par Vercel.
