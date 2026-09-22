@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "prisma generate && prisma migrate deploy",
+    "build": "prisma generate && node scripts/migrate.mjs",
     "typecheck": "tsc --noEmit",
     "compile": "prisma generate && tsc",
     "start": "node dist/server.js",

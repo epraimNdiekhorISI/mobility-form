@@ -5,3 +5,6 @@ dist
 *.db-journal
 .vercel
 .env*.local
+
+.vercel
+.env*
