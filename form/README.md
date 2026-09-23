@@ -14,12 +14,19 @@ form/
 
 Dépendances externes, chargées par le HTML : les polices Google Fonts (Sora, Plus Jakarta Sans) et GSAP (cdnjs).
 
+## Questions
+
+- **Obligatoires** : toutes, sauf deux laissées facultatives à dessein — le verbatim (« Raconte avec tes mots ») et l'adresse e-mail de recontact. Le bouton « Suivant » reste inactif tant que la réponse n'est pas saisie.
+- **Choix multiples** (cases à cocher) : moyens de transport, mobile money, et façon de trouver les clients. Les réponses sont enregistrées séparées par « ; », et les statistiques les comptent une par une. Cocher « Aucun » décoche le reste.
+- **Recontact** : adresse e-mail, dont le format est vérifié avant de passer à la suite.
+
 ## Endpoint
 
 En haut de `js/app.js` :
 
 ```js
-const API_URL = "http://localhost:4000"; // en prod : l'URL de l'API déployée
+const API_URL_PROD = "https://mobility-form-api.vercel.app"; // API déployée
+// En local (localhost), le formulaire bascule tout seul sur http://localhost:4000
 ```
 
 Une chaîne vide active le mode démonstration : aucune donnée n'est envoyée.
