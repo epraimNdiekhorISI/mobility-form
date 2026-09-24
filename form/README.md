@@ -16,7 +16,7 @@ Dépendances externes, chargées par le HTML : les polices Google Fonts (Sora, P
 
 ## Questions
 
-- **Obligatoires** : toutes, sauf deux laissées facultatives à dessein — le verbatim (« Raconte avec tes mots ») et l'adresse e-mail de recontact. Le bouton « Suivant » reste inactif tant que la réponse n'est pas saisie.
+- **Obligatoires** : toutes, sauf deux laissées facultatives à dessein — le verbatim (« Pourriez-vous nous le raconter avec vos mots ? ») et l'adresse e-mail de recontact. Le bouton « Suivant » reste inactif tant que la réponse n'est pas saisie.
 - **Choix multiples** (cases à cocher) : moyens de transport, mobile money, et façon de trouver les clients. Les réponses sont enregistrées séparées par « ; », et les statistiques les comptent une par une. Cocher « Aucun » décoche le reste.
 - **Recontact** : adresse e-mail, dont le format est vérifié avant de passer à la suite.
 

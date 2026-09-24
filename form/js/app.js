@@ -15,33 +15,33 @@ const CHECK = '<svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" str
 
 const QSETS = {
 usager: [
-  { id:"consent", type:"consent", required:true, q:"Un instant avant de commencer", hint:"Cette enquête est anonyme et libre. Ton avis va aider à concevoir un transport plus fiable à N'Djamena." },
-  { id:"quartier", type:"text", required:true, q:"Tu habites quel quartier ?", hint:"Le quartier ou l'arrondissement suffit, pas ton adresse.", placeholder:"Ex. Chagoua, Diguel, Moursal…" },
-  { id:"moyen", type:"multi", required:true, q:"Tes moyens de transport habituels ?", hint:"Coche tout ce que tu utilises — plusieurs réponses possibles.", options:["Clando (moto-taxi)","Taxi voiture","Minibus","Marche","Véhicule personnel"], other:true },
-  { id:"probleme", type:"single", required:true, q:"Ton plus gros problème de transport ?", options:["Prix trop cher","Prix qui change à chaque fois","Attente trop longue","Surcharge / inconfort","Insécurité","Mon quartier est mal desservi","Conducteurs imprudents"], other:true },
-  { id:"difficulte", type:"paragraph", required:false, q:"Raconte-le avec tes mots", hint:"Une situation vécue, ce qui te dérange le plus, ou ce que tu voudrais voir changer.", placeholder:"Écris ici…" },
-  { id:"attente", type:"single", required:true, q:"Tu attends combien de temps, en moyenne, pour trouver un transport ?", options:["Moins de 5 min","5 à 15 min","15 à 30 min","Plus de 30 min"] },
-  { id:"telephone", type:"single", required:true, q:"Ton téléphone, c'est…", options:["Un smartphone","Un téléphone simple (à touches)"] },
-  { id:"mobile_money", type:"multi", required:true, q:"Quel mobile money utilises-tu ?", hint:"Coche tout ce que tu utilises.", options:["Airtel Money","Moov Money","Aucun"] },
-  { id:"interet", type:"single", required:true, q:"Utiliserais-tu une appli pour commander un moto-taxi identifié, prix connu à l'avance ?", options:["Oui, certainement","Peut-être","Non"] },
-  { id:"supplement", type:"single", required:true, q:"Paierais-tu un petit supplément pour un service fiable et sécurisé ?", options:["Oui","Non","Ça dépend"] },
-  { id:"recontact", type:"email", required:false, q:"On te recontacte pour tester le service ?", hint:"Seulement si tu le souhaites. Ton adresse ne sert qu'à ça.", placeholder:"ton.email@exemple.com (facultatif)" },
+  { id:"consent", type:"consent", required:true, q:"Un instant avant de commencer", hint:"Cette enquête est anonyme et facultative. Votre avis nous aidera à concevoir un transport plus fiable à N'Djamena." },
+  { id:"quartier", type:"text", required:true, q:"Dans quel quartier habitez-vous ?", hint:"Le quartier ou l'arrondissement suffit : nous ne vous demandons pas votre adresse.", placeholder:"Ex. Chagoua, Diguel, Moursal…" },
+  { id:"moyen", type:"multi", required:true, q:"Quels sont vos moyens de transport habituels ?", hint:"Veuillez cocher tout ce que vous utilisez — plusieurs réponses possibles.", options:["Clando (moto-taxi)","Taxi voiture","Minibus","Marche","Véhicule personnel"], other:true },
+  { id:"probleme", type:"single", required:true, q:"Quel est votre principal problème de transport ?", options:["Prix trop cher","Prix qui change à chaque fois","Attente trop longue","Surcharge / inconfort","Insécurité","Mon quartier est mal desservi","Conducteurs imprudents"], other:true },
+  { id:"difficulte", type:"paragraph", required:false, q:"Pourriez-vous nous le raconter avec vos mots ?", hint:"Une situation vécue, ce qui vous dérange le plus, ou ce que vous aimeriez voir changer.", placeholder:"Écrivez ici…" },
+  { id:"attente", type:"single", required:true, q:"Combien de temps attendez-vous, en moyenne, pour trouver un transport ?", options:["Moins de 5 min","5 à 15 min","15 à 30 min","Plus de 30 min"] },
+  { id:"telephone", type:"single", required:true, q:"Quel type de téléphone utilisez-vous ?", options:["Un smartphone","Un téléphone simple (à touches)"] },
+  { id:"mobile_money", type:"multi", required:true, q:"Quel mobile money utilisez-vous ?", hint:"Veuillez cocher tout ce que vous utilisez.", options:["Airtel Money","Moov Money","Aucun"] },
+  { id:"interet", type:"single", required:true, q:"Utiliseriez-vous une application pour commander un moto-taxi identifié, avec un prix connu à l'avance ?", options:["Oui, certainement","Peut-être","Non"] },
+  { id:"supplement", type:"single", required:true, q:"Seriez-vous prêt(e) à payer un petit supplément pour un service fiable et sécurisé ?", options:["Oui","Non","Ça dépend"] },
+  { id:"recontact", type:"email", required:false, q:"Accepteriez-vous que nous vous recontactions pour tester le service ?", hint:"Uniquement si vous le souhaitez. Votre adresse ne servira qu'à cela.", placeholder:"votre.email@exemple.com (facultatif)" },
 ],
 chauffeur: [
-  { id:"consent", type:"consent", required:true, q:"Un instant avant de commencer", hint:"Cette enquête est anonyme et libre. Ton avis aide à construire un service pensé pour les chauffeurs de N'Djamena." },
-  { id:"propriete", type:"single", required:true, q:"Le véhicule, il est à toi ?", options:["À moi","En location","Work-and-pay (je paie petit à petit)"] },
-  { id:"anciennete", type:"single", required:true, q:"Depuis combien de temps tu fais ce métier ?", options:["Moins d'un an","1 à 3 ans","3 à 5 ans","Plus de 5 ans"] },
-  { id:"zone", type:"text", required:true, q:"Ta zone habituelle de travail ?", hint:"Le quartier ou l'axe où tu roules le plus.", placeholder:"Ex. Dembé, Chagoua, Av. Charles de Gaulle…" },
-  { id:"courses_jour", type:"single", required:true, q:"Combien de courses par jour, en moyenne ?", options:["Moins de 10","10 à 20","20 à 40","Plus de 40"] },
-  { id:"trouver_clients", type:"multi", required:true, q:"Comment tu trouves tes clients ?", hint:"Coche toutes les façons qui te concernent.", options:["Dans la rue","À la station","Des clients réguliers","Par téléphone"] },
-  { id:"probleme", type:"single", required:true, q:"Ton plus gros problème dans le métier ?", options:["Trouver des clients","Les prix tirés vers le bas","Le carburant","Les tracasseries (police, syndicat)","L'insécurité","L'entretien du véhicule"], other:true },
-  { id:"difficulte", type:"paragraph", required:false, q:"Raconte ce qui est le plus dur, avec tes mots", hint:"Ce qui te fatigue le plus au quotidien, ou ce que tu voudrais voir changer.", placeholder:"Écris ici…" },
-  { id:"telephone", type:"single", required:true, q:"Ton téléphone, c'est…", options:["Un smartphone","Un téléphone simple (à touches)"] },
-  { id:"mobile_money", type:"multi", required:true, q:"Quel mobile money utilises-tu ?", hint:"Coche tout ce que tu utilises.", options:["Airtel Money","Moov Money","Aucun"] },
-  { id:"interet", type:"single", required:true, q:"Une plateforme qui t'envoie des clients directement, ça t'intéresse ?", options:["Oui","Peut-être","Non"] },
-  { id:"commission", type:"single", required:true, q:"Quelle commission par course serait acceptable pour toi ?", options:["Gratuit au début","5 %","10 %","Ça dépend"] },
-  { id:"financement", type:"single", required:true, q:"Un financement pour avoir ton propre véhicule (payer petit à petit), ça t'intéresse ?", options:["Oui","Non","Peut-être"] },
-  { id:"recontact", type:"email", required:false, q:"On te recontacte pour être conducteur pilote ?", hint:"Seulement si tu veux. Ton adresse ne sert qu'à ça.", placeholder:"ton.email@exemple.com (facultatif)" },
+  { id:"consent", type:"consent", required:true, q:"Un instant avant de commencer", hint:"Cette enquête est anonyme et facultative. Votre avis nous aidera à construire un service pensé pour les chauffeurs de N'Djamena." },
+  { id:"propriete", type:"single", required:true, q:"Le véhicule que vous conduisez vous appartient-il ?", options:["À moi","En location","Work-and-pay (je paie petit à petit)"] },
+  { id:"anciennete", type:"single", required:true, q:"Depuis combien de temps exercez-vous ce métier ?", options:["Moins d'un an","1 à 3 ans","3 à 5 ans","Plus de 5 ans"] },
+  { id:"zone", type:"text", required:true, q:"Quelle est votre zone de travail habituelle ?", hint:"Le quartier ou l'axe où vous roulez le plus.", placeholder:"Ex. Dembé, Chagoua, Av. Charles de Gaulle…" },
+  { id:"courses_jour", type:"single", required:true, q:"Combien de courses effectuez-vous par jour, en moyenne ?", options:["Moins de 10","10 à 20","20 à 40","Plus de 40"] },
+  { id:"trouver_clients", type:"multi", required:true, q:"Comment trouvez-vous vos clients ?", hint:"Veuillez cocher toutes les réponses qui vous concernent.", options:["Dans la rue","À la station","Des clients réguliers","Par téléphone"] },
+  { id:"probleme", type:"single", required:true, q:"Quel est votre principal problème dans le métier ?", options:["Trouver des clients","Les prix tirés vers le bas","Le carburant","Les tracasseries (police, syndicat)","L'insécurité","L'entretien du véhicule"], other:true },
+  { id:"difficulte", type:"paragraph", required:false, q:"Pourriez-vous nous dire, avec vos mots, ce qui est le plus difficile ?", hint:"Ce qui vous fatigue le plus au quotidien, ou ce que vous aimeriez voir changer.", placeholder:"Écrivez ici…" },
+  { id:"telephone", type:"single", required:true, q:"Quel type de téléphone utilisez-vous ?", options:["Un smartphone","Un téléphone simple (à touches)"] },
+  { id:"mobile_money", type:"multi", required:true, q:"Quel mobile money utilisez-vous ?", hint:"Veuillez cocher tout ce que vous utilisez.", options:["Airtel Money","Moov Money","Aucun"] },
+  { id:"interet", type:"single", required:true, q:"Une plateforme qui vous envoie directement des clients vous intéresserait-elle ?", options:["Oui","Peut-être","Non"] },
+  { id:"commission", type:"single", required:true, q:"Quelle commission par course vous semblerait acceptable ?", options:["Gratuit au début","5 %","10 %","Ça dépend"] },
+  { id:"financement", type:"single", required:true, q:"Un financement pour acquérir votre propre véhicule (en payant petit à petit) vous intéresserait-il ?", options:["Oui","Non","Peut-être"] },
+  { id:"recontact", type:"email", required:false, q:"Accepteriez-vous que nous vous recontactions pour devenir conducteur pilote ?", hint:"Uniquement si vous le souhaitez. Votre adresse ne servira qu'à cela.", placeholder:"votre.email@exemple.com (facultatif)" },
 ]
 };
 let QUESTIONS = [];
@@ -101,10 +101,10 @@ function screenIntro(){
   el.innerHTML = wrap(`
     <div class="hero" data-in><img src="${IMG.hero}" alt="Statue de la Place de la Nation à N'Djamena, bâtiment moderne en arrière-plan"><span class="cap">N'Djamena · mobilité</span></div>
     <p class="kicker" data-in>Enquête · N'Djamena</p>
-    <h1 data-in>Parle-nous de la mobilité à N'Djamena</h1>
-    <p class="lead" data-in>Deux à trois minutes, anonyme. Tes réponses aident à construire un transport plus fiable pour tous.</p>
+    <h1 data-in>Parlez-nous de la mobilité à N'Djamena</h1>
+    <p class="lead" data-in>Deux à trois minutes, en toute confidentialité. Vos réponses nous aideront à construire un transport plus fiable pour tous.</p>
     <div class="trust" data-in><div class="big">100% anonyme</div><div class="lab">Aucun nom ni pièce d'identité demandés.</div></div>
-    <p class="ask" data-in>Tu es… ?</p>
+    <p class="ask" data-in>Vous êtes… ?</p>
     <div class="choices" data-in>
       ${CHOICES.map(c=>`<button class="choice" data-profile="${c.p}"><span class="ico">${c.ic}</span><span class="tx"><b>${c.t}</b><span>${c.s}</span></span><span class="go">${GO}</span></button>`).join("")}
     </div>
@@ -133,12 +133,12 @@ function screenQuestion(qi){
   } else if(Q.type==="single"){
     body = `<div class="options" role="radiogroup" aria-label="${Q.q}">` +
       Q.options.map(o=>`<button class="opt" role="radio" aria-checked="false" data-val="${o}" data-in><span class="mark"></span>${o}</button>`).join("") +
-      (Q.other?`<button class="opt" role="radio" aria-checked="false" data-val="__other" data-in><span class="mark"></span>Autre</button><div class="otherwrap" id="otherwrap"><input class="field" id="otherinput" placeholder="Précise…"></div>`:"") + `</div>`;
+      (Q.other?`<button class="opt" role="radio" aria-checked="false" data-val="__other" data-in><span class="mark"></span>Autre</button><div class="otherwrap" id="otherwrap"><input class="field" id="otherinput" placeholder="Veuillez préciser…"></div>`:"") + `</div>`;
   } else if(Q.type==="multi"){
     /* Plusieurs réponses possibles : cases à cocher, puis bouton Suivant. */
     body = `<div class="options" role="group" aria-label="${Q.q}">` +
       Q.options.map(o=>`<button class="opt check" role="checkbox" aria-checked="false" data-val="${o}" data-in><span class="mark"></span>${o}</button>`).join("") +
-      (Q.other?`<button class="opt check" role="checkbox" aria-checked="false" data-val="__other" data-in><span class="mark"></span>Autre</button><div class="otherwrap" id="otherwrap"><input class="field" id="otherinput" placeholder="Précise…"></div>`:"") + `</div>`;
+      (Q.other?`<button class="opt check" role="checkbox" aria-checked="false" data-val="__other" data-in><span class="mark"></span>Autre</button><div class="otherwrap" id="otherwrap"><input class="field" id="otherinput" placeholder="Veuillez préciser…"></div>`:"") + `</div>`;
   } else if(Q.type==="paragraph"){
     body = `<textarea class="field" id="para" placeholder="${Q.placeholder||""}" data-in></textarea>`;
   } else {
@@ -243,12 +243,12 @@ function screenQuestion(qi){
 function declined(){
   topbar.hidden = true;
   swap(()=>{ const el=document.createElement("div"); el.className="screen done";
-    el.innerHTML = wrap(`<div class="glyph" data-in><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="16.5" r="1.3" fill="#fff"/></svg></div><h1 data-in>Pas de souci</h1><p data-in>Merci quand même. Passe une bonne journée.</p>`);
+    el.innerHTML = wrap(`<div class="glyph" data-in><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="16.5" r="1.3" fill="#fff"/></svg></div><h1 data-in>C'est entendu</h1><p data-in>Merci de votre attention. Nous vous souhaitons une excellente journée.</p>`);
     return el; });
 }
 function screenDone(){
   const el=document.createElement("div"); el.className="screen done";
-  el.innerHTML = wrap(`<div class="doneimg" data-in><img src="${IMG.flag}" alt="Drapeau du Tchad flottant sous un monument de N'Djamena"></div><div class="glyph" data-in>${CHECK}</div><h1 data-in>Merci&nbsp;!</h1><p data-in>Ta réponse compte. Elle va aider à rendre les déplacements à N'Djamena plus simples.</p><div class="status" id="status" data-in></div>`);
+  el.innerHTML = wrap(`<div class="doneimg" data-in><img src="${IMG.flag}" alt="Drapeau du Tchad flottant sous un monument de N'Djamena"></div><div class="glyph" data-in>${CHECK}</div><h1 data-in>Merci beaucoup&nbsp;!</h1><p data-in>Nous vous remercions pour le temps accordé. Votre réponse nous aidera à rendre les déplacements à N'Djamena plus simples.</p><div class="status" id="status" data-in></div>`);
   return el;
 }
 
@@ -265,9 +265,9 @@ async function submit(){
       body: JSON.stringify(payload)
     });
     const data = await res.json();
-    if(status) status.textContent = data.ok ? "Réponse enregistrée." : "Erreur, réessaie.";
+    if(status) status.textContent = data.ok ? "Réponse enregistrée." : "Une erreur est survenue, veuillez réessayer.";
   }catch(err){
-    if(status){ status.textContent="Connexion faible : réessaie plus tard."; status.classList.add("err"); }
+    if(status){ status.textContent="Connexion faible : veuillez réessayer plus tard."; status.classList.add("err"); }
   }
 }
 
